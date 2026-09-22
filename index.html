@@ -1,1 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Solaria Calc | Calculadora solar demo</title>
+
+  <meta
+    name="description"
+    content="Calculadora solar interactiva creada como proyecto demostrativo de desarrollo web."
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+<header class="header">
+
+  <div class="container nav">
+
+    <a href="#inicio" class="logo">
+      SOLARIA<span>☀</span>
+    </a>
+
+    <nav>
+      <a href="#calculadora">Calculadora</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#calculadora" class="nav-button">
+        Calcular ahorro
+      </a>
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+
+<!-- HERO -->
+
+<section id="inicio" class="hero">
+
+  <div class="container hero-grid">
+
+    <div>
+
+      <p class="eyebrow">
+        ENERGÍA · SIMULACIÓN · JAVASCRIPT
+      </p>
+
+      <h1>
+        Descubre el potencial
+        <span>solar de tu vivienda.</span>
+      </h1>
+
+      <p class="hero-description">
+        Introduce unos pocos datos y obtén una estimación
+        demostrativa de paneles, producción energética y ahorro.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#calculadora" class="btn-primary">
+          Calcular ahora
+        </a>
+
+        <a href="#como-funciona" class="btn-secondary">
+          Cómo funciona
+        </a>
+
+      </div>
+
+
+      <div class="hero-points">
+
+        <span>✓ Resultado instantáneo</span>
+
+        <span>✓ Sin datos personales</span>
+
+        <span>✓ Simulación interactiva</span>
+
+      </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+      <div class="sun-icon">
+        ☀
+      </div>
+
+      <p class="small-label">
+        PROYECTO INTERACTIVO
+      </p>
+
+      <h2>
+        De datos simples a resultados útiles
+      </h2>
+
+      <p>
+        Esta web utiliza JavaScript para interpretar los datos
+        y actualizar automáticamente los resultados.
+      </p>
+
+      <a href="#calculadora" class="card-link">
+        Probar calculadora →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- CALCULADORA -->
+
+<section id="calculadora" class="calculator-section">
+
+  <div class="container calculator-grid">
+
+
+    <!-- FORMULARIO -->
+
+    <div class="calculator-form">
+
+      <p class="section-label">
+        CALCULADORA SOLAR
+      </p>
+
+      <h2>
+        Cuéntanos cómo consumes energía
+      </h2>
+
+      <p class="form-intro">
+        Los cálculos utilizan valores simplificados únicamente
+        para demostrar el funcionamiento de esta aplicación.
+      </p>
+
+
+      <form id="solarForm">
+
+
+        <label>
+
+          Consumo eléctrico mensual
+
+          <div class="input-unit">
+
+            <input
+              id="consumption"
+              type="number"
+              min="50"
+              max="3000"
+              value="350"
+              required
+            >
+
+            <span>kWh</span>
+
+          </div>
+
+        </label>
+
+
+        <label>
+
+          Superficie disponible de tejado
+
+          <div class="input-unit">
+
+            <input
+              id="roofArea"
+              type="number"
+              min="5"
+              max="500"
+              value="40"
+              required
+            >
+
+            <span>m²</span>
+
+          </div>
+
+        </label>
+
+
+        <label>
+
+          Orientación principal
+
+          <select id="orientation">
+
+            <option value="1">
+              Sur
+            </option>
+
+            <option value="0.92">
+              Sureste / Suroeste
+            </option>
+
+            <option value="0.80">
+              Este / Oeste
+            </option>
+
+            <option value="0.60">
+              Norte
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <label>
+
+          Tipo de vivienda
+
+          <select id="homeType">
+
+            <option value="0.58">
+              Vivienda unifamiliar
+            </option>
+
+            <option value="0.52">
+              Piso / vivienda compartida
+            </option>
+
+            <option value="0.65">
+              Vivienda con consumo diurno alto
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <button type="submit">
+          Calcular mi simulación →
+        </button>
+
+
+        <p class="form-warning">
+
+          ⚠ Estimación educativa. No constituye un estudio,
+          presupuesto ni asesoramiento energético profesional.
+
+        </p>
+
+      </form>
+
+    </div>
+
+
+
+    <!-- RESULTADOS -->
+
+    <div class="results-card" id="resultsCard">
+
+      <div class="results-placeholder" id="resultsPlaceholder">
+
+        <div class="placeholder-icon">
+          ☀
+        </div>
+
+        <h3>
+          Tus resultados aparecerán aquí
+        </h3>
+
+        <p>
+          Completa los datos y pulsa
+          <strong>Calcular mi simulación</strong>.
+        </p>
+
+      </div>
+
+
+      <div class="results-content" id="resultsContent">
+
+        <p class="result-label">
+          SIMULACIÓN SOLAR
+        </p>
+
+        <div class="main-result">
+
+          <span id="panelResult">
+            0
+          </span>
+
+          <small>
+            paneles estimados
+          </small>
+
+        </div>
+
+
+        <div class="result-grid">
+
+          <div>
+
+            <span>
+              Potencia
+            </span>
+
+            <strong id="powerResult">
+              0 kWp
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Producción anual
+            </span>
+
+            <strong id="productionResult">
+              0 kWh
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Cobertura estimada
+            </span>
+
+            <strong id="coverageResult">
+              0 %
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Ahorro anual demo
+            </span>
+
+            <strong id="savingResult">
+              0 €
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="energy-bar">
+
+          <div class="energy-bar-label">
+
+            <span>
+              Cobertura energética
+            </span>
+
+            <span id="barPercentage">
+              0 %
+            </span>
+
+          </div>
+
+          <div class="bar-track">
+
+            <div
+              class="bar-fill"
+              id="barFill">
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="result-message">
+
+          <strong id="resultTitle">
+            Resultado
+          </strong>
+
+          <p id="resultMessage">
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          id="resetButton"
+          class="reset-button"
+        >
+          Nueva simulación
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- CÓMO FUNCIONA -->
+
+<section
+  id="como-funciona"
+  class="section how-section"
+>
+
+  <div class="container">
+
+    <p class="section-label">
+      QUÉ HACE EL CÓDIGO
+    </p>
+
+    <h2 class="section-title">
+      Una calculadora, cuatro pasos
+    </h2>
+
+
+    <div class="steps-grid">
+
+
+      <article>
+
+        <span>01</span>
+
+        <h3>
+          Lee los datos
+        </h3>
+
+        <p>
+          JavaScript recoge consumo,
+          superficie y orientación.
+        </p>
+
+      </article>
+
+
+      <article>
+
+        <span>02</span>
+
+        <h3>
+          Aplica condiciones
+        </h3>
+
+        <p>
+          La orientación modifica el rendimiento
+          estimado de la instalación.
+        </p>
+
+      </article>
+
+
+      <article>
+
+        <span>03</span>
+
+        <h3>
+          Calcula
+        </h3>
+
+        <p>
+          El programa estima potencia,
+          producción y ahorro.
+        </p>
+
+      </article>
+
+
+      <article>
+
+        <span>04</span>
+
+        <h3>
+          Actualiza la interfaz
+        </h3>
+
+        <p>
+          Los resultados y las barras cambian
+          automáticamente.
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- EXPLICACIÓN -->
+
+<section class="section explanation">
+
+  <div class="container explanation-grid">
+
+    <div>
+
+      <p class="section-label">
+        IMPORTANTE
+      </p>
+
+      <h2>
+        Esto no pretende calcular una instalación real.
+      </h2>
+
+    </div>
+
+
+    <div>
+
+      <p>
+        La producción solar depende de muchos factores:
+        ubicación, inclinación, sombras, clima,
+        características de los paneles, tarifas eléctricas
+        y hábitos de consumo.
+      </p>
+
+      <p>
+        Solaria Calc utiliza supuestos simplificados para
+        demostrar programación, diseño de interfaz y lógica
+        matemática.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- CTA FINAL -->
+
+<section class="final-section">
+
+  <div class="container final-card">
+
+    <span>PROYECTO Nº3</span>
+
+    <h2>
+      Diseño que también calcula.
+    </h2>
+
+    <p>
+      Solaria Calc combina interfaz,
+      experiencia móvil y lógica JavaScript.
+    </p>
+
+    <a href="#calculadora" class="btn-primary">
+      Probar calculadora
+    </a>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+  <div class="container footer-content">
+
+    <a href="#inicio" class="logo">
+      SOLARIA<span>☀</span>
+    </a>
+
+    <p>
+      Proyecto demostrativo de Astaluxe Studio.
+    </p>
+
+    <p>
+      © 2026 Solaria Calc
+    </p>
+
+  </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
